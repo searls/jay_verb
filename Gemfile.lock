@@ -1,12 +1,33 @@
+PATH
+  remote: .
+  specs:
+    conjugator (0.1.0)
+      activesupport
+      mojinizer
+
 GEM
   remote: https://rubygems.org/
   specs:
+    activesupport (6.0.2.1)
+      concurrent-ruby (~> 1.0, >= 1.0.2)
+      i18n (>= 0.7, < 2)
+      minitest (~> 5.1)
+      tzinfo (~> 1.1)
+      zeitwerk (~> 2.2)
     ast (2.4.0)
+    concurrent-ruby (1.1.5)
+    i18n (1.7.0)
+      concurrent-ruby (~> 1.0)
     jaro_winkler (1.5.4)
+    minitest (5.13.0)
+    moji (1.6)
+    mojinizer (0.2.2)
+      moji (~> 1.6)
     parallel (1.19.1)
     parser (2.7.0.2)
       ast (~> 2.4.0)
     rainbow (3.0.0)
+    rake (10.5.0)
     rubocop (0.77.0)
       jaro_winkler (~> 1.5.1)
       parallel (~> 1.10)
@@ -20,12 +41,20 @@ GEM
     standard (0.1.7)
       rubocop (~> 0.77.0)
       rubocop-performance (~> 1.5.1)
+    thread_safe (0.3.6)
+    tzinfo (1.2.5)
+      thread_safe (~> 0.1)
     unicode-display_width (1.6.0)
+    zeitwerk (2.2.2)
 
 PLATFORMS
   ruby
 
 DEPENDENCIES
+  bundler (~> 1.17)
+  conjugator!
+  minitest (~> 5.0)
+  rake (~> 10.0)
   standard
 
 BUNDLED WITH

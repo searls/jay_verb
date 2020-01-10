@@ -1,17 +1,19 @@
-# jay_verb
+# conjugator
 
-JayVerb is a gem for conjugating Japanese verbs. The main driver is the JayVerb class. Instances should be initialized
+Conjugator is a gem for conjugating Japanese verbs. The main driver is the Conjugator class. Instances should be initialized
 with Japanese verbs in plain form and include both kanji and hiragana, i.e.:
 
 ```ruby
-say = JayVerb.new("言う", "いう")
+require "conjugator"
+
+say = Conjugator("言う", "いう")
 ```
 
-This will return a JayVerb instance, which will automatically convert the provided hiragana into Roman letters and process the verb.
-Note that the first kanji argument does not necessarily have to be written in Kanji. The library would still work given: 
+This will return a Conjugator instance, which will automatically convert the provided hiragana into Roman letters and process the verb.
+Note that the first kanji argument does not necessarily have to be written in Kanji. The library would still work given:
 
 ```ruby
-say = JayVerb.new("いう", "いう")
+say = Conjugator("いう", "いう")
 # Get the Roman-letter form of the verb by accessing the @romaji instance variable:
 say.romaji # => "iu"
 ```
@@ -23,14 +25,14 @@ When instantiating the verb, the type of verb will be resolved behind the scenes
 instance variable. This enables the conjugator to conjugate the verb appropriately.
 
 ```ruby
-say = JayVerb.new("言う", "いう")
+say = Conjugator("言う", "いう")
 say.part_of_speech # => "v5u"
 ```
 
 To find most common conjugations, access the @conjugations hash:
 
 ```ruby
-say = JayVerb.new("言う", "いう")
+say = Conjugator("言う", "いう")
 say.conjugations # => {:te_form=>"言って", :ta_form=>"言った", :polite_forms=>{:present=>"言います", :past=>"言いました", :present_negative=>"言いません", :past_negative=>"言いませんでした", :volitional=>"言いましょう", :te_form=>"言いまして"},
                  # :negative_plain_forms=>{:present=>"言わない", :past=>"言わなかった", :te_form=>"言わなくて"},
                  # :continuous_forms=>{:present_spoken=>"言ってる", :present_written=>"言っている", :present_polite=>"言っています", :present_polite_spoken=>"言ってます", :past_spoken=>"言ってた", :past_written=>"言っていた", :past_polite=>"言っていました", :past_polite_spoken=>"言ってました", :te_form_spoken=>"言ってて", :te_form_written=>"言っていて", :te_form_polite=>"言っていまして", :te_form_polite_spoken=>"言ってまして", :negative_te_form_spoken=>"言ってなくて", :negative_te_form_written=>"言っていなくて"},
