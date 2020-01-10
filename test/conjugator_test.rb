@@ -34,6 +34,39 @@ class ConjugatorTest < Minitest::Test
     }, result)
   end
 
+  def test_suru
+    result = Conjugator("する", "する")
+
+    assert_conjugation("する", {
+      present: {
+        polite: "します",
+        plain: "する",
+      },
+      negative: {
+        polite: "しません",
+        plain: "しない",
+      },
+      past: {
+        polite: "しました",
+        plain: "した",
+      },
+      negative_past: {
+        polite: "しませんでした",
+        plain: "しなかった",
+      },
+      volitional: {
+        polite: "しましょう",
+        plain: "しよう",
+      },
+      te: "して",
+      imperative: "しろ",
+      passive: "される",
+      causative: "させる",
+      hypothetical: "すれば",
+      potential: "できる",
+    }, result)
+  end
+
   private
 
   def assert_conjugation(plain, expected, result)

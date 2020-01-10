@@ -35,6 +35,7 @@ module Japanese
         RU_IRREGULAR_MAPPING.each do |k, v|
           self.part_of_speech = v if kanji == k
         end
+        part_of_speech
       else
         if ends_in_iru_eru? && is_consonant_verb?
           self.part_of_speech = "v5r"
