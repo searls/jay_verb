@@ -1,6 +1,5 @@
 module Japanese
   module ToRomaji
-  
     BASIC_HIRAGANA_MAP = {"あ": "a",
                           "い": "i",
                           "う": "u",
@@ -57,7 +56,7 @@ module Japanese
                           "ず": "zu",
                           "ぜ": "ze",
                           "ぞ": "zo",
-                          "だ": "da", 
+                          "だ": "da",
                           "ぢ": "dchi",
                           "づ": "dzu",
                           "で": "de",
@@ -71,9 +70,8 @@ module Japanese
                           "ぴ": "pi",
                           "ぷ": "pu",
                           "ぺ": "pe",
-                          "ぽ": "po" 
-                          }
-  
+                          "ぽ": "po",}
+
     SMALL_COMBO_HIRAGANA_MAP = {
       "きゃ": "kya",
       "きゅ": "kyu",
@@ -111,9 +109,9 @@ module Japanese
       "ぴゃ": "pya",
       "ぴゅ": "pyu",
       "ぴょ": "pyo",
-      "てぃ": "ti"
+      "てぃ": "ti",
     }
-  
+
     DOUBLED_CONSONANT_HIRAGANA_MAP = {
       "っか": "kka",
       "っき": "kki",
@@ -139,9 +137,9 @@ module Japanese
       "っぴ": "ppi",
       "っぷ": "ppu",
       "っぺ": "ppe",
-      "っぽ": "ppo"
+      "っぽ": "ppo",
     }
-  
+
     TRIPLE_CHAR_HIRAGANA_MAP = {
       "っきゃ": "kkya",
       "っきゅ": "kkyu",
@@ -160,9 +158,9 @@ module Japanese
       "っびょ": "bbyo",
       "っぴゃ": "ppya",
       "っぴゅ": "ppyu",
-      "っぴょ": "ppyo"
+      "っぴょ": "ppyo",
     }
-  
+
     SPECIALS = {
       "ゃ": "ya",
       "ゅ": "yu",
@@ -173,9 +171,9 @@ module Japanese
       "ぅ": "u",
       "ぇ": "e",
       "ぉ": "o",
-      "。": "."
+      "。": ".",
     }
-  
+
     # Converts a hiragana string into Roman letters
     def self.convert_hiragana(string)
       hierarchy = [TRIPLE_CHAR_HIRAGANA_MAP, DOUBLED_CONSONANT_HIRAGANA_MAP, SMALL_COMBO_HIRAGANA_MAP, BASIC_HIRAGANA_MAP, SPECIALS]
@@ -189,7 +187,7 @@ module Japanese
           end
         end
       end
-      return string
+      string
     end
   end
 end
