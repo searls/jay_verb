@@ -70,7 +70,7 @@ module Japanese
                           "ぴ": "pi",
                           "ぷ": "pu",
                           "ぺ": "pe",
-                          "ぽ": "po",}
+                          "ぽ": "po"}
 
     SMALL_COMBO_HIRAGANA_MAP = {
       "きゃ": "kya",
@@ -109,7 +109,7 @@ module Japanese
       "ぴゃ": "pya",
       "ぴゅ": "pyu",
       "ぴょ": "pyo",
-      "てぃ": "ti",
+      "てぃ": "ti"
     }
 
     DOUBLED_CONSONANT_HIRAGANA_MAP = {
@@ -137,7 +137,7 @@ module Japanese
       "っぴ": "ppi",
       "っぷ": "ppu",
       "っぺ": "ppe",
-      "っぽ": "ppo",
+      "っぽ": "ppo"
     }
 
     TRIPLE_CHAR_HIRAGANA_MAP = {
@@ -158,7 +158,7 @@ module Japanese
       "っびょ": "bbyo",
       "っぴゃ": "ppya",
       "っぴゅ": "ppyu",
-      "っぴょ": "ppyo",
+      "っぴょ": "ppyo"
     }
 
     SPECIALS = {
@@ -171,7 +171,7 @@ module Japanese
       "ぅ": "u",
       "ぇ": "e",
       "ぉ": "o",
-      "。": ".",
+      "。": "."
     }
 
     # Converts a hiragana string into Roman letters

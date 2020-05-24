@@ -5,14 +5,14 @@ module Japanese
   module VerbIdentifier
     # List of consonant stem verbs ending in -iru
     CONSONANT_VERBS = %w[脂ぎる びびる 契る 散る どじる 愚痴る 入る 走る 穿る 迸る
-                         熱る いびる 弄る 炒る 要る 限る 齧る 呪る 切る 霧る 切る
-                         きしる 軋る 抉る 参る 混じる　交じる 滅入る 見縊る 漲る
-                         毟る 捩じる 握る 罵る 陥る 思い入る 思い切る せびる 知る
-                         謗る 滾る 魂消る 迸る とちる 野次る 過る 横切る 嘲る 駄弁る
-                         彫る 選る 啁る 耽る 伏せる 侍る 減る 撚る 翻る 火照る 帰る
-                         返る 反る 還る 孵る 陰る 駆ける 蹴る くねる 覆る 練る のめる
-                         滑る 阿る 競る 挵る 喋る 茂る 湿気る そべる 滑る 猛る 照る
-                         抓める 抓る うねる 蘇る 甦る 放る 括る 抉る 捥る 捩る 詰る]
+      熱る いびる 弄る 炒る 要る 限る 齧る 呪る 切る 霧る 切る
+      きしる 軋る 抉る 参る 混じる　交じる 滅入る 見縊る 漲る
+      毟る 捩じる 握る 罵る 陥る 思い入る 思い切る せびる 知る
+      謗る 滾る 魂消る 迸る とちる 野次る 過る 横切る 嘲る 駄弁る
+      彫る 選る 啁る 耽る 伏せる 侍る 減る 撚る 翻る 火照る 帰る
+      返る 反る 還る 孵る 陰る 駆ける 蹴る くねる 覆る 練る のめる
+      滑る 阿る 競る 挵る 喋る 茂る 湿気る そべる 滑る 猛る 照る
+      抓める 抓る うねる 蘇る 甦る 放る 括る 抉る 捥る 捩る 詰る]
 
     RU_IRREGULAR_MAPPING = {
       "する": "v-suru",
@@ -20,7 +20,7 @@ module Japanese
       "有る": "v-aru",
       "ある": "v-aru",
       "居らっしゃる": "v5r-i",
-      "いらっしゃる": "v5r-i",
+      "いらっしゃる": "v5r-i"
     }
 
     AMBIGUITY_IF_HIRAGANA_ONLY = %w[いる きる える へる かえる ねる しめる]
@@ -29,20 +29,18 @@ module Japanese
     I_HIRAGANA = %w[い き し ち ひ に み り ぎ じ ぢぃ び ぴ]
 
     def resolve_ru_verb_class
-      return nil if ambiguous?
+      return if ambiguous?
       if irregular?
         RU_IRREGULAR_MAPPING.stringify_keys!
         RU_IRREGULAR_MAPPING.each do |k, v|
           self.part_of_speech = v if kanji == k
         end
-      else
-        if ends_in_iru_eru? && is_consonant_verb?
-          self.part_of_speech = "v5r"
-        elsif ends_in_ru? && !ends_in_iru_eru?
-          self.part_of_speech = "v5r"
-        elsif ends_in_iru_eru? && !is_consonant_verb?
-          self.part_of_speech = "v1"
-        end
+      elsif ends_in_iru_eru? && is_consonant_verb?
+        self.part_of_speech = "v5r"
+      elsif ends_in_ru? && !ends_in_iru_eru?
+        self.part_of_speech = "v5r"
+      elsif ends_in_iru_eru? && !is_consonant_verb?
+        self.part_of_speech = "v1"
       end
     end
 

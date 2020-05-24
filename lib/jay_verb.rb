@@ -15,7 +15,6 @@ class JayVerb
     :causative_passive_dictionary_form, :causative_forms, :conjugations,
     :causative_passive_forms_hiragana, :causative_passive_forms_romaji,
     :passive_forms_hiragana, :passive_forms_romaji, :causative_passive_forms,
-    :causative_passive_forms_hiragana, :causative_passive_forms_romaji,
     :causative_forms_hiragana, :causative_forms_romaji, :has_imperative,
     :has_causative, :has_causative_passive, :has_passive, :has_volitional
 
@@ -47,13 +46,11 @@ class JayVerb
   # ("Exist!"), which while grammatically correct, may sound nonsensical.
   def set_verb_behavior_types
     if part_of_speech.in?(%w[v1 v5b v5g v5k v5k-s v5m v5n v5r v5r-i v5s v5t v5u v5u-s v-aru v-kuru v-suru])
-      attrs = %w[imperative passive volitional causative causative_passive]
-      attrs.each do |a|
-        unless send("has_#{a}") == false
-          eval "self.has_#{a} = true"
-        end
-      end
+      self.has_imperative = true
+      self.has_passive = true
+      self.has_volitional = true
+      self.has_causative = true
+      self.has_causative_passive = true
     end
   end
 end
-# JayVerb.new("言う", "いう")

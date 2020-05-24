@@ -3,56 +3,68 @@ module Japanese
     # List with complete list of exceptions for
     # consonant verbs that end in -eru -iru at: https://en.wikipedia.org/wiki/Japanese_consonant_and_vowel_verbs#List_of_consonant_stem_verbs_ending_in_iru
 
-    POLITE_VERB_ENDINGS = {present: "ます",
-                           past: "ました",
-                           present_negative: "ません",
-                           past_negative: "ませんでした",
-                           volitional: "ましょう",
-                           te_form: "まして",}
-    NEGATIVE_VERB_ENDINGS = {present: "ない",
-                             past: "なかった",
-                             te_form: "なくて",}
+    POLITE_VERB_ENDINGS = {
+      present: "ます",
+      past: "ました",
+      present_negative: "ません",
+      past_negative: "ませんでした",
+      volitional: "ましょう",
+      te_form: "まして"
+    }
+    NEGATIVE_VERB_ENDINGS = {
+      present: "ない",
+      past: "なかった",
+      te_form: "なくて"
+    }
 
-    CONTINUOUS_ENDINGS = {present_spoken: "る",
-                          present_written: "いる",
-                          present_polite: "います",
-                          present_polite_spoken: "ます",
-                          past_spoken: "た",
-                          past_written: "いた",
-                          past_polite: "いました",
-                          past_polite_spoken: "ました",
-                          te_form_spoken: "て",
-                          te_form_written: "いて",
-                          te_form_polite: "いまして",
-                          te_form_polite_spoken: "まして",
-                          negative_te_form_spoken: "なくて",
-                          negative_te_form_written: "いなくて",}
+    CONTINUOUS_ENDINGS = {
+      present_spoken: "る",
+      present_written: "いる",
+      present_polite: "います",
+      present_polite_spoken: "ます",
+      past_spoken: "た",
+      past_written: "いた",
+      past_polite: "いました",
+      past_polite_spoken: "ました",
+      te_form_spoken: "て",
+      te_form_written: "いて",
+      te_form_polite: "いまして",
+      te_form_polite_spoken: "まして",
+      negative_te_form_spoken: "なくて",
+      negative_te_form_written: "いなくて"
+    }
 
-    ROMAJI_POLITE_VERB_ENDINGS = {present: "masu",
-                                  past: "mashita",
-                                  present_negative: "masen",
-                                  past_negative: "masen deshita",
-                                  volitional: "masho",
-                                  te_form: "mashite",}
+    ROMAJI_POLITE_VERB_ENDINGS = {
+      present: "masu",
+      past: "mashita",
+      present_negative: "masen",
+      past_negative: "masen deshita",
+      volitional: "masho",
+      te_form: "mashite"
+    }
 
-    ROMAJI_NEGATIVE_VERB_ENDINGS = {present: "nai",
-                                    past: "nakatta",
-                                    te_form: "nakute",}
+    ROMAJI_NEGATIVE_VERB_ENDINGS = {
+      present: "nai",
+      past: "nakatta",
+      te_form: "nakute"
+    }
 
-    ROMAJI_CONTINUOUS_ENDINGS = {present_spoken: "ru",
-                                 present_written: " iru",
-                                 present_polite: " imasu",
-                                 present_polite_spoken: "masu",
-                                 past_spoken: "ta",
-                                 past_written: " ita",
-                                 past_polite: " imashita",
-                                 past_polite_spoken: "mashita",
-                                 te_form_spoken: "te",
-                                 te_form_written: " ite",
-                                 te_form_polite: " imashite",
-                                 te_form_polite_spoken: "mashite",
-                                 negative_te_form_spoken: "nakute",
-                                 negative_te_form_written: " inakute",}
+    ROMAJI_CONTINUOUS_ENDINGS = {
+      present_spoken: "ru",
+      present_written: " iru",
+      present_polite: " imasu",
+      present_polite_spoken: "masu",
+      past_spoken: "ta",
+      past_written: " ita",
+      past_polite: " imashita",
+      past_polite_spoken: "mashita",
+      te_form_spoken: "te",
+      te_form_written: " ite",
+      te_form_polite: " imashite",
+      te_form_polite_spoken: "mashite",
+      negative_te_form_spoken: "nakute",
+      negative_te_form_written: " inakute"
+    }
 
     VERB_CLASSES = %w[v1 v5b v5g v5k v5k-s v5m v5n v5r v5r-i v5s v5t v5u v5u-s v-aru v-kuru v-suru]
 
@@ -80,7 +92,6 @@ module Japanese
           set_causative_passive_forms_hash
         end
       end
-      # self.save => Keep this commented out for now to experiment around in the console.
     end
 
     # Makes up for the fact that v5u verb endings are represented by one Roman letter as opposed to the
@@ -164,7 +175,6 @@ module Japanese
       self.stem_form = stem
       hiragana_forms[:stem] = hiragana_stem
       romaji_forms[:stem] = romaji_stem
-      # kanji.save! => Comment this out now for experimental purposes
     end
 
     def set_negative_stem
@@ -260,24 +270,30 @@ module Japanese
       stem = stem_form
       hiragana_stem = hiragana_forms[:stem]
       romaji_stem = romaji_forms[:stem]
-      conjugations[:polite_forms] = {present: stem + polite[0],
-                                     past: stem + polite[1],
-                                     present_negative: stem + polite[2],
-                                     past_negative: stem + polite[3],
-                                     volitional: stem + polite[4],
-                                     te_form: stem + polite[5],}
-      hiragana_forms[:polite_forms] = {present: hiragana_stem + polite[0],
-                                       past: hiragana_stem + polite[1],
-                                       present_negative: hiragana_stem + polite[2],
-                                       past_negative: hiragana_stem + polite[3],
-                                       volitional: hiragana_stem + polite[4],
-                                       te_form: hiragana_stem + polite[5],}
-      romaji_forms[:polite_forms] = {past: romaji_stem + romaji_polite[1],
-                                     present: romaji_stem + romaji_polite[0],
-                                     present_negative: romaji_stem + romaji_polite[2],
-                                     past_negative: romaji_stem + romaji_polite[3],
-                                     volitional: romaji_stem + romaji_polite[4],
-                                     te_form: romaji_stem + romaji_polite[5],}
+      conjugations[:polite_forms] = {
+        present: stem + polite[0],
+        past: stem + polite[1],
+        present_negative: stem + polite[2],
+        past_negative: stem + polite[3],
+        volitional: stem + polite[4],
+        te_form: stem + polite[5]
+      }
+      hiragana_forms[:polite_forms] = {
+        present: hiragana_stem + polite[0],
+        past: hiragana_stem + polite[1],
+        present_negative: hiragana_stem + polite[2],
+        past_negative: hiragana_stem + polite[3],
+        volitional: hiragana_stem + polite[4],
+        te_form: hiragana_stem + polite[5]
+      }
+      romaji_forms[:polite_forms] = {
+        past: romaji_stem + romaji_polite[1],
+        present: romaji_stem + romaji_polite[0],
+        present_negative: romaji_stem + romaji_polite[2],
+        past_negative: romaji_stem + romaji_polite[3],
+        volitional: romaji_stem + romaji_polite[4],
+        te_form: romaji_stem + romaji_polite[5]
+      }
       unless has_volitional
         conjugations[:polite_forms][:volitional] = "N/A"
         hiragana_forms[:polite_forms][:volitional] = "N/A"
@@ -291,15 +307,21 @@ module Japanese
       stem = negative_stem
       hiragana_stem = hiragana_forms[:negative_stem]
       romaji_stem = romaji_forms[:negative_stem]
-      conjugations[:negative_plain_forms] = {present: stem + endings[0],
-                                             past: stem + endings[1],
-                                             te_form: stem + endings[2],}
-      hiragana_forms[:negative_plain_forms] = {present: hiragana_stem + endings[0],
-                                               past: hiragana_stem + endings[1],
-                                               te_form: hiragana_stem + endings[2],}
-      romaji_forms[:negative_plain_forms] = {present: romaji_stem + romaji_endings[0],
-                                             past: romaji_stem + romaji_endings[1],
-                                             te_form: romaji_stem + romaji_endings[2],}
+      conjugations[:negative_plain_forms] = {
+        present: stem + endings[0],
+        past: stem + endings[1],
+        te_form: stem + endings[2]
+      }
+      hiragana_forms[:negative_plain_forms] = {
+        present: hiragana_stem + endings[0],
+        past: hiragana_stem + endings[1],
+        te_form: hiragana_stem + endings[2]
+      }
+      romaji_forms[:negative_plain_forms] = {
+        present: romaji_stem + romaji_endings[0],
+        past: romaji_stem + romaji_endings[1],
+        te_form: romaji_stem + romaji_endings[2]
+      }
     end
 
     def set_prohibitive_form
@@ -774,48 +796,54 @@ module Japanese
       te_form = conjugations[:te_form]
       hiragana_te_form = hiragana_forms[:te_form]
       romaji_te_form = romaji_forms[:te_form]
-      conjugations[:continuous_forms] = {present_spoken: te_form + endings[0],
-                                         present_written: te_form + endings[1],
-                                         present_polite: te_form + endings[2],
-                                         present_polite_spoken: te_form + endings[3],
-                                         past_spoken: te_form + endings[4],
-                                         past_written: te_form + endings[5],
-                                         past_polite: te_form + endings[6],
-                                         past_polite_spoken: te_form + endings[7],
-                                         te_form_spoken: te_form + endings[8],
-                                         te_form_written: te_form + endings[9],
-                                         te_form_polite: te_form + endings[10],
-                                         te_form_polite_spoken: te_form + endings[11],
-                                         negative_te_form_spoken: te_form + endings[12],
-                                         negative_te_form_written: te_form + endings[13],}
-      hiragana_forms[:continuous_forms] = {present_spoken: hiragana_te_form + endings[0],
-                                           present_written: hiragana_te_form + endings[1],
-                                           present_polite: hiragana_te_form + endings[2],
-                                           present_polite_spoken: hiragana_te_form + endings[3],
-                                           past_spoken: hiragana_te_form + endings[4],
-                                           past_written: hiragana_te_form + endings[5],
-                                           past_polite: hiragana_te_form + endings[6],
-                                           past_polite_spoken: hiragana_te_form + endings[7],
-                                           te_form_spoken: hiragana_te_form + endings[8],
-                                           te_form_written: hiragana_te_form + endings[9],
-                                           te_form_polite: hiragana_te_form + endings[10],
-                                           te_form_polite_spoken: hiragana_te_form + endings[11],
-                                           negative_te_form_spoken: hiragana_te_form + endings[12],
-                                           negative_te_form_written: hiragana_te_form + endings[13],}
-      romaji_forms[:continuous_forms] = {present_spoken: romaji_te_form + romaji_endings[0],
-                                         present_written: romaji_te_form + romaji_endings[1],
-                                         present_polite: romaji_te_form + romaji_endings[2],
-                                         present_polite_spoken: romaji_te_form + romaji_endings[3],
-                                         past_spoken: romaji_te_form + romaji_endings[4],
-                                         past_written: romaji_te_form + romaji_endings[5],
-                                         past_polite: romaji_te_form + romaji_endings[6],
-                                         past_polite_spoken: romaji_te_form + romaji_endings[7],
-                                         te_form_spoken: romaji_te_form + romaji_endings[8],
-                                         te_form_written: romaji_te_form + romaji_endings[9],
-                                         te_form_polite: romaji_te_form + romaji_endings[10],
-                                         te_form_polite_spoken: romaji_te_form + romaji_endings[11],
-                                         negative_te_form_spoken: romaji_te_form + romaji_endings[12],
-                                         negative_te_form_written: romaji_te_form + romaji_endings[13],}
+      conjugations[:continuous_forms] = {
+        present_spoken: te_form + endings[0],
+        present_written: te_form + endings[1],
+        present_polite: te_form + endings[2],
+        present_polite_spoken: te_form + endings[3],
+        past_spoken: te_form + endings[4],
+        past_written: te_form + endings[5],
+        past_polite: te_form + endings[6],
+        past_polite_spoken: te_form + endings[7],
+        te_form_spoken: te_form + endings[8],
+        te_form_written: te_form + endings[9],
+        te_form_polite: te_form + endings[10],
+        te_form_polite_spoken: te_form + endings[11],
+        negative_te_form_spoken: te_form + endings[12],
+        negative_te_form_written: te_form + endings[13]
+      }
+      hiragana_forms[:continuous_forms] = {
+        present_spoken: hiragana_te_form + endings[0],
+        present_written: hiragana_te_form + endings[1],
+        present_polite: hiragana_te_form + endings[2],
+        present_polite_spoken: hiragana_te_form + endings[3],
+        past_spoken: hiragana_te_form + endings[4],
+        past_written: hiragana_te_form + endings[5],
+        past_polite: hiragana_te_form + endings[6],
+        past_polite_spoken: hiragana_te_form + endings[7],
+        te_form_spoken: hiragana_te_form + endings[8],
+        te_form_written: hiragana_te_form + endings[9],
+        te_form_polite: hiragana_te_form + endings[10],
+        te_form_polite_spoken: hiragana_te_form + endings[11],
+        negative_te_form_spoken: hiragana_te_form + endings[12],
+        negative_te_form_written: hiragana_te_form + endings[13]
+      }
+      romaji_forms[:continuous_forms] = {
+        present_spoken: romaji_te_form + romaji_endings[0],
+        present_written: romaji_te_form + romaji_endings[1],
+        present_polite: romaji_te_form + romaji_endings[2],
+        present_polite_spoken: romaji_te_form + romaji_endings[3],
+        past_spoken: romaji_te_form + romaji_endings[4],
+        past_written: romaji_te_form + romaji_endings[5],
+        past_polite: romaji_te_form + romaji_endings[6],
+        past_polite_spoken: romaji_te_form + romaji_endings[7],
+        te_form_spoken: romaji_te_form + romaji_endings[8],
+        te_form_written: romaji_te_form + romaji_endings[9],
+        te_form_polite: romaji_te_form + romaji_endings[10],
+        te_form_polite_spoken: romaji_te_form + romaji_endings[11],
+        negative_te_form_spoken: romaji_te_form + romaji_endings[12],
+        negative_te_form_written: romaji_te_form + romaji_endings[13]
+      }
     end
 
     def process_i_adjective
@@ -849,89 +877,105 @@ module Japanese
       neg = conjugations[:adverbial_form]
       hiragana_neg = hiragana_forms[:adverbial_form]
       romaji_neg = romaji_forms[:adverbial_form]
-      conjugations[:negative_adjective_forms] = {present: neg + "ない",
-                                                 present_polite: neg + "ありません",
-                                                 past: neg + "なかった",
-                                                 past_polite: neg + "ありませんでした",
-                                                 te_form: neg + "なくて",
-                                                 present_honorofic: neg + "ございません",
-                                                 past_honorific: neg + "ございませんでした",
-                                                 te_form_honorific: neg + "ございませんでして",}
-      hiragana_forms[:negative_adjective_forms] = {present: hiragana_neg + "ない",
-                                                   present_polite: hiragana_neg + "ありません",
-                                                   past: hiragana_neg + "なかった",
-                                                   past_polite: hiragana_neg + "ありませんでした",
-                                                   te_form: hiragana_neg + "なくて",
-                                                   present_honorific: hiragana_neg + "ございません",
-                                                   past_honorific: hiragana_neg + "ございませんでした",
-                                                   te_form_honorific: hiragana_neg + "ございませんでして",}
-      romaji_forms[:negative_adjective_forms] = {present: romaji_neg + " nai",
-                                                 present_polite: romaji_neg + " arimasen",
-                                                 past_polite: romaji_neg + " arimasen deshita",
-                                                 past: romaji_neg + " nakatta",
-                                                 te_form: romaji_neg + " nakute",
-                                                 present_honorific: romaji_neg + " gozaimasen",
-                                                 pasts_honorific: romaji_neg + " gozaimasen deshita",
-                                                 te_form_honorific: " gozaimasen deshite",}
+      conjugations[:negative_adjective_forms] = {
+        present: neg + "ない",
+        present_polite: neg + "ありません",
+        past: neg + "なかった",
+        past_polite: neg + "ありませんでした",
+        te_form: neg + "なくて",
+        present_honorofic: neg + "ございません",
+        past_honorific: neg + "ございませんでした",
+        te_form_honorific: neg + "ございませんでして"
+      }
+      hiragana_forms[:negative_adjective_forms] = {
+        present: hiragana_neg + "ない",
+        present_polite: hiragana_neg + "ありません",
+        past: hiragana_neg + "なかった",
+        past_polite: hiragana_neg + "ありませんでした",
+        te_form: hiragana_neg + "なくて",
+        present_honorific: hiragana_neg + "ございません",
+        past_honorific: hiragana_neg + "ございませんでした",
+        te_form_honorific: hiragana_neg + "ございませんでして"
+      }
+      romaji_forms[:negative_adjective_forms] = {
+        present: romaji_neg + " nai",
+        present_polite: romaji_neg + " arimasen",
+        past_polite: romaji_neg + " arimasen deshita",
+        past: romaji_neg + " nakatta",
+        te_form: romaji_neg + " nakute",
+        present_honorific: romaji_neg + " gozaimasen",
+        pasts_honorific: romaji_neg + " gozaimasen deshita",
+        te_form_honorific: " gozaimasen deshite"
+      }
     end
 
     def set_adjective_conjugations
       stem = conjugations[:adjective_base]
       hiragana_stem = hiragana_forms[:adjective_base]
       romaji_stem = romaji_forms[:adjective_base]
-      conjugations[:adjective_conjugations] = {present: kanji,
-                                               present_polite: kanji + "です",
-                                               past: stem + "かった",
-                                               past_polite: kanji + "でした",
-                                               te_form: stem + "くて",}
-      hiragana_forms[:adjective_conjugations] = {present: hiragana,
-                                                 present_polite: hiragana + "です",
-                                                 past: hiragana_stem + "かった",
-                                                 past_polite: hiragana + "でした",
-                                                 te_form: hiragana_stem + "くて",}
-      romaji_forms[:adjective_conjugations] = {present: romaji,
-                                               present_polite: romaji + " desu",
-                                               past: romaji_stem + "katta",
-                                               past_polite: romaji + " deshita",
-                                               te_form: romaji_stem + "kute",}
+      conjugations[:adjective_conjugations] = {
+        present: kanji,
+        present_polite: kanji + "です",
+        past: stem + "かった",
+        past_polite: kanji + "でした",
+        te_form: stem + "くて"
+      }
+      hiragana_forms[:adjective_conjugations] = {
+        present: hiragana,
+        present_polite: hiragana + "です",
+        past: hiragana_stem + "かった",
+        past_polite: hiragana + "でした",
+        te_form: hiragana_stem + "くて"
+      }
+      romaji_forms[:adjective_conjugations] = {
+        present: romaji,
+        present_polite: romaji + " desu",
+        past: romaji_stem + "katta",
+        past_polite: romaji + " deshita",
+        te_form: romaji_stem + "kute"
+      }
     end
 
     def set_copula_conjugations
-      conjugations[:copula] = {present: "だ",
-                               present_polite: "です",
-                               present_formal: "である",
-                               present_honorific: "でございます",
-                               past: "だった",
-                               past_polite: "でした",
-                               past_formal: "であった",
-                               past_honorific: "でございました",
-                               volitional: "だろう",
-                               volitional_polite: "でしょう",
-                               volitional_formal: "であろう",
-                               volitional_honorific: "でございましょう",
-                               te_form: "で",
-                               te_form_polite: "でして",
-                               te_form_formal: "であって",
-                               te_form_honorific: "でございまして",
-                               continuous_formal: "であり",}
+      conjugations[:copula] = {
+        present: "だ",
+        present_polite: "です",
+        present_formal: "である",
+        present_honorific: "でございます",
+        past: "だった",
+        past_polite: "でした",
+        past_formal: "であった",
+        past_honorific: "でございました",
+        volitional: "だろう",
+        volitional_polite: "でしょう",
+        volitional_formal: "であろう",
+        volitional_honorific: "でございましょう",
+        te_form: "で",
+        te_form_polite: "でして",
+        te_form_formal: "であって",
+        te_form_honorific: "でございまして",
+        continuous_formal: "であり"
+      }
       hiragana_forms[:copula] = conjugations[:copula]
-      romaji_forms[:copula] = {present: "da",
-                               present_polite: "desu",
-                               present_formal: "de aru",
-                               present_honorific: "de gozaimasu",
-                               past: "datta",
-                               past_polite: "deshita",
-                               past_formal: "de atta",
-                               past_honorific: "de gozaimashita",
-                               volitional: "daro",
-                               volitional_polite: "desho",
-                               volitional_formal: "de aro",
-                               volitional_honorific: "de gozaimasho",
-                               te_form: "de",
-                               te_form_polite: "deshite",
-                               te_form_formal: "de atte",
-                               te_form_honorific: "de gozaimashite",
-                               continuous_formal: "de ari",}
+      romaji_forms[:copula] = {
+        present: "da",
+        present_polite: "desu",
+        present_formal: "de aru",
+        present_honorific: "de gozaimasu",
+        past: "datta",
+        past_polite: "deshita",
+        past_formal: "de atta",
+        past_honorific: "de gozaimashita",
+        volitional: "daro",
+        volitional_polite: "desho",
+        volitional_formal: "de aro",
+        volitional_honorific: "de gozaimasho",
+        te_form: "de",
+        te_form_polite: "deshite",
+        te_form_formal: "de atte",
+        te_form_honorific: "de gozaimashite",
+        continuous_formal: "de ari"
+      }
     end
 
     def set_passive_dictionary_form
@@ -951,17 +995,17 @@ module Japanese
         end
         case part_of_speech
           when "v1"
-            passive = stem += "られる"
-            hiragana_passive = hiragana_stem += "られる"
-            romaji_passive = romaji_stem += "rareru"
+            passive = stem + "られる"
+            hiragana_passive = hiragana_stem + "られる"
+            romaji_passive = romaji_stem + "rareru"
           when "v-suru"
-            passive = stem += "る"
-            hiragana_passive = hiragana_stem += "る"
-            romaji_passive = romaji_stem += "ru"
+            passive = stem + "る"
+            hiragana_passive = hiragana_stem + "る"
+            romaji_passive = romaji_stem + "ru"
           else
-            passive = stem += "れる"
-            hiragana_passive = hiragana_stem += "れる"
-            romaji_passive = romaji_stem += "reru"
+            passive = stem + "れる"
+            hiragana_passive = hiragana_stem + "れる"
+            romaji_passive = romaji_stem + "reru"
         end
         self.passive_dictionary_form = passive
         hiragana_forms[:passive_dictionary_form] = hiragana_passive
@@ -998,23 +1042,27 @@ module Japanese
       romaji_stem = passive_forms_romaji[:stem]
       polite = Japanese::Conjugator::POLITE_VERB_ENDINGS.values
       romaji_polite = Japanese::Conjugator::ROMAJI_POLITE_VERB_ENDINGS.values
-      passive_forms[:polite_forms] = {present: stem + polite[0],
-                                      past: stem + polite[1],
-                                      present_negative: stem + polite[2],
-                                      past_negative: stem + polite[3],
-                                      te_form: stem + polite[5],}
+      passive_forms[:polite_forms] = {
+        present: stem + polite[0],
+        past: stem + polite[1],
+        present_negative: stem + polite[2],
+        past_negative: stem + polite[3],
+        te_form: stem + polite[5]
+      }
       passive_forms_hiragana[:polite_forms] = {
         present: hiragana_stem + polite[0],
         past: hiragana_stem + polite[1],
         present_negative: hiragana_stem + polite[2],
         past_negative: hiragana_stem + polite[3],
-        te_form: hiragana_stem + polite[5],
+        te_form: hiragana_stem + polite[5]
       }
-      passive_forms_romaji[:polite_forms] = {present: romaji_stem + romaji_polite[0],
-                                             past: romaji_stem + romaji_polite[1],
-                                             present_negative: romaji_stem + romaji_polite[2],
-                                             past_negative: romaji_stem + romaji_polite[3],
-                                             te_form: romaji_stem + romaji_polite[5],}
+      passive_forms_romaji[:polite_forms] = {
+        present: romaji_stem + romaji_polite[0],
+        past: romaji_stem + romaji_polite[1],
+        present_negative: romaji_stem + romaji_polite[2],
+        past_negative: romaji_stem + romaji_polite[3],
+        te_form: romaji_stem + romaji_polite[5]
+      }
     end
 
     def set_passive_negative_plain_forms
@@ -1025,15 +1073,17 @@ module Japanese
       romaji_endings = Japanese::Conjugator::ROMAJI_NEGATIVE_VERB_ENDINGS.values
       passive_forms[:negative_plain_forms] = {present: stem + endings[0],
                                               past: stem + endings[1],
-                                              te_form: stem + endings[2],}
+                                              te_form: stem + endings[2]}
       passive_forms_hiragana[:negative_plain_forms] = {
         present: hiragana_stem + endings[0],
         past: hiragana_stem + endings[1],
-        te_form: hiragana_stem + endings[2],
+        te_form: hiragana_stem + endings[2]
       }
-      passive_forms_romaji[:negative_plain_forms] = {present: romaji_stem + romaji_endings[0],
-                                                     past: romaji_stem + romaji_endings[1],
-                                                     te_form: romaji_stem + romaji_endings[2],}
+      passive_forms_romaji[:negative_plain_forms] = {
+        present: romaji_stem + romaji_endings[0],
+        past: romaji_stem + romaji_endings[1],
+        te_form: romaji_stem + romaji_endings[2]
+      }
     end
 
     def set_passive_te_and_ta_forms
@@ -1054,48 +1104,55 @@ module Japanese
       romaji_te_form = passive_forms_romaji[:te_form]
       endings = Japanese::Conjugator::CONTINUOUS_ENDINGS.values
       romaji_endings = Japanese::Conjugator::ROMAJI_CONTINUOUS_ENDINGS.values
-      passive_forms[:continuous_forms] = {present_spoken: te_form + endings[0],
-                                          present_written: te_form + endings[1],
-                                          present_formal: te_form + endings[2],
-                                          present_formal_spoken: te_form + endings[3],
-                                          past_spoken: te_form + endings[4],
-                                          past_written: te_form + endings[5],
-                                          past_formal: te_form + endings[6],
-                                          past_polite_spoken: te_form + endings[7],
-                                          te_form_spoken: te_form + endings[8],
-                                          te_form_written: te_form + endings[9],
-                                          te_form_polite: te_form + endings[10],
-                                          te_form_polite_spoken: te_form + endings[11],
-                                          negative_te_form_spoken: te_form + endings[12],
-                                          negative_te_form_written: te_form + endings[13],}
-      passive_forms_hiragana[:continuous_forms] = {present_spoken: hiragana_te_form + endings[0],
-                                                   present_written: hiragana_te_form + endings[1],
-                                                   present_formal: hiragana_te_form + endings[2],
-                                                   present_formal_spoken: hiragana_te_form + endings[3],
-                                                   past_spoken: hiragana_te_form + endings[4],
-                                                   past_written: hiragana_te_form + endings[5],
-                                                   past_formal: hiragana_te_form + endings[6],
-                                                   past_polite_spoken: hiragana_te_form + endings[7],
-                                                   te_form_spoken: hiragana_te_form + endings[8],
-                                                   te_form_written: hiragana_te_form + endings[9],
-                                                   te_form_polite: hiragana_te_form + endings[10],
-                                                   te_form_polite_spoken: hiragana_te_form + endings[11],
-                                                   negative_te_form_spoken: hiragana_te_form + endings[12],
-                                                   negative_te_form_written: hiragana_te_form + endings[13],}
-      passive_forms_romaji[:continuous_forms] = {present_spoken: romaji_te_form + romaji_endings[0],
-                                                 present_written: romaji_te_form + romaji_endings[1],
-                                                 present_formal: romaji_te_form + romaji_endings[2],
-                                                 present_formal_spoken: romaji_te_form + romaji_endings[3],
-                                                 past_spoken: romaji_te_form + romaji_endings[4],
-                                                 past_written: romaji_te_form + romaji_endings[5],
-                                                 past_formal: romaji_te_form + romaji_endings[6],
-                                                 past_polite_spoken: romaji_te_form + romaji_endings[7],
-                                                 te_form_spoken: romaji_te_form + romaji_endings[8],
-                                                 te_form_written: romaji_te_form + romaji_endings[9],
-                                                 te_form_polite: romaji_te_form + romaji_endings[10],
-                                                 te_form_polite_spoken: romaji_te_form + romaji_endings[11],
-                                                 negative_te_form_spoken: romaji_te_form + romaji_endings[12],
-                                                 negative_te_form_written: romaji_te_form + romaji_endings[13],}
+      passive_forms[:continuous_forms] = {
+        present_spoken: te_form + endings[0],
+        present_written: te_form + endings[1],
+        present_formal: te_form + endings[2],
+        present_formal_spoken: te_form + endings[3],
+        past_spoken: te_form + endings[4],
+        past_written: te_form + endings[5],
+        past_formal: te_form + endings[6],
+        past_polite_spoken: te_form + endings[7],
+        te_form_spoken: te_form + endings[8],
+        te_form_written: te_form + endings[9],
+        te_form_polite: te_form + endings[10],
+        te_form_polite_spoken: te_form + endings[11],
+        negative_te_form_spoken: te_form + endings[12],
+        negative_te_form_written: te_form + endings[13]
+      }
+
+      passive_forms_hiragana[:continuous_forms] = {
+        present_spoken: hiragana_te_form + endings[0],
+        present_written: hiragana_te_form + endings[1],
+        present_formal: hiragana_te_form + endings[2],
+        present_formal_spoken: hiragana_te_form + endings[3],
+        past_spoken: hiragana_te_form + endings[4],
+        past_written: hiragana_te_form + endings[5],
+        past_formal: hiragana_te_form + endings[6],
+        past_polite_spoken: hiragana_te_form + endings[7],
+        te_form_spoken: hiragana_te_form + endings[8],
+        te_form_written: hiragana_te_form + endings[9],
+        te_form_polite: hiragana_te_form + endings[10],
+        te_form_polite_spoken: hiragana_te_form + endings[11],
+        negative_te_form_spoken: hiragana_te_form + endings[12],
+        negative_te_form_written: hiragana_te_form + endings[13]
+      }
+      passive_forms_romaji[:continuous_forms] = {
+        present_spoken: romaji_te_form + romaji_endings[0],
+        present_written: romaji_te_form + romaji_endings[1],
+        present_formal: romaji_te_form + romaji_endings[2],
+        present_formal_spoken: romaji_te_form + romaji_endings[3],
+        past_spoken: romaji_te_form + romaji_endings[4],
+        past_written: romaji_te_form + romaji_endings[5],
+        past_formal: romaji_te_form + romaji_endings[6],
+        past_polite_spoken: romaji_te_form + romaji_endings[7],
+        te_form_spoken: romaji_te_form + romaji_endings[8],
+        te_form_written: romaji_te_form + romaji_endings[9],
+        te_form_polite: romaji_te_form + romaji_endings[10],
+        te_form_polite_spoken: romaji_te_form + romaji_endings[11],
+        negative_te_form_spoken: romaji_te_form + romaji_endings[12],
+        negative_te_form_written: romaji_te_form + romaji_endings[13]
+      }
     end
 
     def set_passive_conditional
@@ -1124,17 +1181,17 @@ module Japanese
         end
         case part_of_speech
           when "v1"
-            causative = stem += "させる"
-            hiragana_causative = hiragana_stem += "させる"
-            romaji_causative = romaji_stem += "saseru"
+            causative = stem + "させる"
+            hiragana_causative = hiragana_stem + "させる"
+            romaji_causative = romaji_stem + "saseru"
           when "v-suru"
-            causative = stem += "る"
-            hiragana_causative = hiragana_stem += "る"
-            romaji_causative = romaji_stem += "ru"
+            causative = stem + "る"
+            hiragana_causative = hiragana_stem + "る"
+            romaji_causative = romaji_stem + "ru"
           else
-            causative = stem += "せる"
-            hiragana_causative = hiragana_stem += "せる"
-            romaji_causative = romaji_stem += "seru"
+            causative = stem + "せる"
+            hiragana_causative = hiragana_stem + "せる"
+            romaji_causative = romaji_stem + "seru"
         end
         self.causative_dictionary_form = causative
         hiragana_forms[:causative_dictionary_form] = hiragana_causative
@@ -1191,20 +1248,20 @@ module Japanese
                                         present_negative: stem + polite[2],
                                         past_negative: stem + polite[3],
                                         volitional: stem + polite[4],
-                                        te_form: stem + polite[5],}
+                                        te_form: stem + polite[5]}
 
       causative_forms_hiragana[:polite_forms] = {present: hiragana_stem + polite[0],
                                                  past: hiragana_stem + polite[1],
                                                  present_negative: hiragana_stem + polite[2],
                                                  past_negative: hiragana_stem + polite[3],
                                                  volitional: hiragana_stem + polite[4],
-                                                 te_form: hiragana_stem + polite[5],}
+                                                 te_form: hiragana_stem + polite[5]}
       causative_forms_romaji[:polite_forms] = {present: romaji_stem + romaji_polite[0],
                                                past: romaji_stem + romaji_polite[1],
                                                present_negative: romaji_stem + romaji_polite[2],
                                                past_negative: romaji_stem + romaji_polite[3],
                                                volitional: romaji_stem + romaji_polite[4],
-                                               te_form: romaji_stem + romaji_polite[5],}
+                                               te_form: romaji_stem + romaji_polite[5]}
     end
 
     def set_causative_negative_plain_forms
@@ -1215,14 +1272,14 @@ module Japanese
       romaji_stem = causative_forms_romaji[:stem]
       causative_forms[:negative_plain_forms] = {present: stem + endings[0],
                                                 past: stem + endings[1],
-                                                te_form: stem + endings[2],}
+                                                te_form: stem + endings[2]}
 
       causative_forms_hiragana[:negative_plain_forms] = {present: hiragana_stem + endings[0],
                                                          past: hiragana_stem + endings[1],
-                                                         te_form: hiragana_stem + endings[2],}
+                                                         te_form: hiragana_stem + endings[2]}
       causative_forms_romaji[:negative_plain_forms] = {present: romaji_stem + romaji_endings[0],
                                                        past: romaji_stem + romaji_endings[1],
-                                                       te_form: romaji_stem + romaji_endings[2],}
+                                                       te_form: romaji_stem + romaji_endings[2]}
     end
 
     def set_causative_continuous_forms
@@ -1244,7 +1301,7 @@ module Japanese
                                             te_form_polite: te_form + endings[10],
                                             te_form_polite_spoken: te_form + endings[11],
                                             negative_te_form_spoken: te_form + endings[12],
-                                            negative_te_form_written: te_form + endings[13],}
+                                            negative_te_form_written: te_form + endings[13]}
 
       causative_forms_hiragana[:continuous_forms] = {present_spoken: hiragana_te_form + endings[0],
                                                      present_written: hiragana_te_form + endings[1],
@@ -1259,7 +1316,7 @@ module Japanese
                                                      te_form_polite: hiragana_te_form + endings[10],
                                                      te_form_polite_spoken: hiragana_te_form + endings[11],
                                                      negative_te_form_spoken: hiragana_te_form + endings[12],
-                                                     negative_te_form_written: hiragana_te_form + endings[13],}
+                                                     negative_te_form_written: hiragana_te_form + endings[13]}
       causative_forms_romaji[:continuous_forms] = {present_spoken: romaji_te_form + romaji_endings[0],
                                                    present_written: romaji_te_form + romaji_endings[1],
                                                    present_formal: romaji_te_form + romaji_endings[2],
@@ -1273,7 +1330,7 @@ module Japanese
                                                    te_form_polite: romaji_te_form + romaji_endings[10],
                                                    te_form_polite_spoken: romaji_te_form + romaji_endings[11],
                                                    negative_te_form_spoken: romaji_te_form + romaji_endings[12],
-                                                   negative_te_form_written: romaji_te_form + romaji_endings[13],}
+                                                   negative_te_form_written: romaji_te_form + romaji_endings[13]}
     end
 
     def set_causative_prohibitive_form
@@ -1303,17 +1360,14 @@ module Japanese
     def set_causative_passive_dictionary_form
       if has_causative_passive
         if part_of_speech.in?(%w[v5k v5k-s v5b v5g v5m v5n v5r v5s v5t v5u v5u-s])
+          stem = negative_stem
+          hiragana_stem = hiragana_forms[:negative_stem]
+          romaji_stem = romaji_forms[:negative_stem]
           if part_of_speech == "v5s" # This chunk handles v5s class verbs
-            stem = negative_stem
-            hiragana_stem = hiragana_forms[:negative_stem]
-            romaji_stem = romaji_forms[:negative_stem]
             self.causative_passive_dictionary_form = stem + "れる"
             hiragana_forms[:causative_passive_dictionary_form] = hiragana_stem + "れる"
             romaji_forms[:causative_passive_dictionary_form] = romaji_stem + "reru"
           else # This handles all consonant regular verbs except v5s class verbs
-            stem = negative_stem
-            hiragana_stem = hiragana_forms[:negative_stem]
-            romaji_stem = romaji_forms[:negative_stem]
             self.causative_passive_dictionary_form = stem + "される"
             hiragana_forms[:causative_passive_dictionary_form] = hiragana_stem + "される"
             romaji_forms[:causative_passive_dictionary_form] = romaji_stem + "sareru"
@@ -1362,18 +1416,18 @@ module Japanese
                                                 past: stem + polite[1],
                                                 present_negative: stem + polite[2],
                                                 past_negative: stem + polite[3],
-                                                te_form: stem + polite[5],}
+                                                te_form: stem + polite[5]}
 
       causative_passive_forms_hiragana[:polite_forms] = {present: hiragana_stem + polite[0],
                                                          past: hiragana_stem + polite[1],
                                                          present_negative: hiragana_stem + polite[2],
                                                          past_negative: hiragana_stem + polite[3],
-                                                         te_form: hiragana_stem + polite[5],}
+                                                         te_form: hiragana_stem + polite[5]}
       causative_passive_forms_romaji[:polite_forms] = {present: romaji_stem + romaji_polite[0],
                                                        past: romaji_stem + romaji_polite[1],
                                                        present_negative: romaji_stem + romaji_polite[2],
                                                        past_negative: romaji_stem + romaji_polite[3],
-                                                       te_form: romaji_stem + romaji_polite[5],}
+                                                       te_form: romaji_stem + romaji_polite[5]}
     end
 
     def set_causative_passive_negative_plain_forms
@@ -1384,14 +1438,14 @@ module Japanese
       romaji_endings = Japanese::Conjugator::ROMAJI_NEGATIVE_VERB_ENDINGS.values
       causative_passive_forms[:negative_plain_forms] = {present: stem + endings[0],
                                                         past: stem + endings[1],
-                                                        te_form: stem + endings[2],}
+                                                        te_form: stem + endings[2]}
 
       causative_passive_forms_hiragana[:negative_plain_forms] = {present: hiragana_stem + endings[0],
                                                                  past: hiragana_stem + endings[1],
-                                                                 te_form: hiragana_stem + endings[2],}
+                                                                 te_form: hiragana_stem + endings[2]}
       causative_passive_forms_romaji[:negative_plain_forms] = {present: romaji_stem + romaji_endings[0],
                                                                past: romaji_stem + romaji_endings[1],
-                                                               te_form: romaji_stem + romaji_endings[2],}
+                                                               te_form: romaji_stem + romaji_endings[2]}
     end
 
     def set_causative_passive_te_and_ta_forms
@@ -1425,7 +1479,7 @@ module Japanese
                                                     te_form_polite: te_form + endings[10],
                                                     te_form_polite_spoken: te_form + endings[11],
                                                     negative_te_form_spoken: te_form + endings[12],
-                                                    negative_te_form_written: te_form + endings[13],}
+                                                    negative_te_form_written: te_form + endings[13]}
 
       causative_passive_forms_hiragana[:continuous_forms] = {present_spoken: hiragana_te_form + endings[0],
                                                              present_written: hiragana_te_form + endings[1],
@@ -1440,7 +1494,7 @@ module Japanese
                                                              te_form_polite: hiragana_te_form + endings[10],
                                                              te_form_polite_spoken: hiragana_te_form + endings[11],
                                                              negative_te_form_spoken: hiragana_te_form + endings[12],
-                                                             negative_te_form_written: hiragana_te_form + endings[13],}
+                                                             negative_te_form_written: hiragana_te_form + endings[13]}
       causative_passive_forms_romaji[:continuous_forms] = {present_spoken: romaji_te_form + romaji_endings[0],
                                                            present_written: romaji_te_form + romaji_endings[1],
                                                            present_formal: romaji_te_form + romaji_endings[2],
@@ -1454,7 +1508,7 @@ module Japanese
                                                            te_form_polite: romaji_te_form + romaji_endings[10],
                                                            te_form_polite_spoken: romaji_te_form + romaji_endings[11],
                                                            negative_te_form_spoken: romaji_te_form + romaji_endings[12],
-                                                           negative_te_form_written: romaji_te_form + romaji_endings[13],}
+                                                           negative_te_form_written: romaji_te_form + romaji_endings[13]}
     end
 
     def set_causative_passive_conditional
